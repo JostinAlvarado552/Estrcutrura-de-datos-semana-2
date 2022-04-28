@@ -4,14 +4,11 @@
  */
 package javaapplication1;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
- * @author SALA H
+ * @author SALA A
  */
 public class JavaApplication1 {
 
@@ -20,38 +17,26 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        try {
-            File file = new File("C:\\Users\\SALA A\\Desktop\\a\\estudiantes.txt");
-            if (file.createNewFile()) {
-                System.out.println("archivo creado: " + file.getName());
-            } else {
-                System.out.println("archivo ya creado");
-            }
-
-        } catch (IOException e) {
-            System.out.println("eror");
-
-        }
-        try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\SALA A\\Desktop\\a\\estudiantes.txt");
-            myWriter.write("ajsdhasdjhkahsd kjhfaldf");
-            myWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("eror");
-        }
-        System.out.println("leemos el archivo");
-        try {
-            FileReader myReader = new FileReader("C:\\Users\\SALA A\\Desktop\\a\\estudiantes.txt");
-            int i;
-            while ((i = myReader.read()) != -1) {
-                System.out.print((char) i);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("eror de lectura");
+        String palabra;
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese la palabra a comprobar: ");
+        palabra = entrada.nextLine();
+        String palabrainvertida = invertirpalabra(palabra);
+        if (palabra.equals(palabrainvertida)) {
+            System.out.println("Si es palindromo");
+        } else {
+            System.out.println("No es palindromo");
         }
     }
+
+    public static String invertirpalabra(String palabra) {
+
+        if (palabra.length() == 1) {
+            return palabra;
+        } else {
+            return invertirpalabra(palabra.substring(1)) + palabra.charAt(0);
+        }
+
+    }
+
 }
